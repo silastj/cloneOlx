@@ -1,10 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+// App CSS
+import './App.css';
+// App CSS
+
+//COMPONENTS
+import { Template } from './components/MainComponents';
+import Header from './components/partials/Header';
+import Footer from './components/partials/Footer';
+
+//ROUTER
+import { BrowserRouter } from 'react-router-dom';
+import Routes from './Routes';
+//ROUTER
 
 const Page = (props) => {
   return(
-    <div>Olá Funcionando</div>
+    <BrowserRouter>
+
+    <Template>
+      <Header/>
+        <Routes/>
+      <Footer/>
+    </Template>
+     
+    </BrowserRouter>
   );
 }
 
