@@ -4,7 +4,7 @@ import { PageArea } from './styled';
 import useApi from '../../helpers/Api';
 import { doLogin } from '../../helpers/AuthHandler';
 
-import { PageContainer, PageTitle,PageBody, ErrorMessage } from '../../components/MainComponents';
+import { PageContainer, PageTitle, ErrorMessage } from '../../components/MainComponents';
 
 
 const Page = () => {
@@ -16,6 +16,7 @@ const Page = () => {
     const [rememberPassword, setRememberPassword] = useState('');
     const [ disabled, setDisabled] = useState(false);
     const [ error, setError ] = useState('');
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -29,7 +30,11 @@ const Page = () => {
             doLogin(json.token, rememberPassword);
             window.location.href = "/";
         }
-
+        //APÓS A VERIFICAÇÃO ELE DESBLOQUEIA OS CAMPOS E LIMPA OS VALUES
+        setDisabled(false);
+        setEmail('');
+        setPassword('');
+        setRememberPassword('');
     }
 
     return(
@@ -48,7 +53,9 @@ const Page = () => {
                                 type="email"
                                 disabled={disabled}
                                 value={email}
-                                onChange={e=>setEmail(e.target.value)}/>
+                                onChange={e=>setEmail(e.target.value)}
+                                required
+                                />
                         </div>
                    </label>
 
@@ -59,7 +66,9 @@ const Page = () => {
                                 type="password"
                                 disabled={disabled}
                                 value={password}
-                                onChange={e=>setPassword(e.target.value)}/>
+                                onChange={e=>setPassword(e.target.value)}
+                                required
+                                />
                         </div>
                    </label>
 
@@ -71,7 +80,7 @@ const Page = () => {
                                 className="checkbox"
                                 disabled={disabled}
                                 checked={rememberPassword}
-                                onClick={()=>setRememberPassword(!rememberPassword)}/>
+                                onChange={()=>setRememberPassword(!rememberPassword)}/>
                         </div>
                    </label>
 

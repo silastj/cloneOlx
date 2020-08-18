@@ -11,6 +11,7 @@ export const HeaderArea = styled.div`
     box-shadow: 0px 2px 2px 0px #0000004a;
     border-radius:0 0 4px 4px;
     padding:10px;
+   
 
 
 
@@ -26,6 +27,7 @@ export const HeaderArea = styled.div`
     }
     a{
         transition: .3s ease-in;
+        color:#000;
     }
     a:hover{
        
