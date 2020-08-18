@@ -11,6 +11,7 @@ export const HeaderArea = styled.div`
     box-shadow: 0px 2px 2px 0px #0000004a;
     border-radius:0 0 4px 4px;
     padding:10px;
+    color:#000;
    
 
 
@@ -25,10 +26,16 @@ export const HeaderArea = styled.div`
      li{
         margin: 0 10px;
     }
-    a{
+    a, button{
         transition: .3s ease-in;
         color:#000;
+        background-color:transparent;
+        border:none;
+        cursor: pointer;      
     }
+    button:focus{
+            outline:0;
+        }
     a:hover{
        
         transition: .3s ease-in;
