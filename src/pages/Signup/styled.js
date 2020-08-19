@@ -23,13 +23,11 @@ export const PageArea = styled.div`
      font-size:12px;
  }
  .area--input{
-     flex:1;
-     
+     flex:1;   
 
      input{
      cursor:pointer;
-     outline:0;
-     
+     outline:0;     
  }
 }
 

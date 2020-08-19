@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 import qs from 'qs';
 
-const BASEAPI = 'http://alunos.b7web.com.br:501/';
+const BASEAPI = 'http://alunos.b7web.com.br:501';
 
 //POST
 const apiFetchPost = async (endpoint, body) => {
@@ -71,10 +71,19 @@ const Api = {
 
         //Criaremos uma função passando dois parametros(email e password)
         const json = await apiFetchPost(
-            'user/signin',
+            '/user/signin',
             {email, password}
         )
         return json;    
+    },
+
+    //LISTA DE DADOS
+    getStates:async () => {
+        const json = await apiFetchGet(
+            '/states/'
+        );
+
+        return json.states;
     }
 
 };
