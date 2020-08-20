@@ -35,16 +35,27 @@ const Page = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setDisabled(true);
+        setError('');
 
-        const json = await api.login(email, password);
+        //VERIFICANDO SE A SENHA ESTÁ DIFERENTE -ERROR
+        if(password !== confirmPassword) {
+            setError('Senhas não batem');
+             setDisabled(false);
+            // setEmail('');
+            // setPassword('');
+            // setName('');
+            return;
+        }
 
-        // if(json.error){
-        //     setError(json.error);
-        // }else {
-        //     doLogin(json.token, rememberPassword);
-        //     window.location.href = "/";
-        // }
-       // APÓS A VERIFICAÇÃO ELE DESBLOQUEIA OS CAMPOS E LIMPA OS VALUES
+        const json = await api.register(name, email, password, stateLoc);
+
+        if(json.error){
+            setError(json.error);
+        }else {
+            doLogin(json.token);
+            window.location.href = "/";
+        }
+       //APÓS A VERIFICAÇÃO ELE DESBLOQUEIA OS CAMPOS E LIMPA OS VALUES
         // setDisabled(false);
         // setEmail('');
         // setPassword('');
@@ -91,6 +102,9 @@ const Page = () => {
                         <div className="area--input">
                             <select required value={stateLoc} onChange={e=>setStateLoc(e.target.value)}>
                                 <option></option>
+                                {stateList.map((i, k)=> 
+                                    <option key={k} value={i.id}>{i.name}</option>
+                                )}
                             </select>
                         </div>
                    </label>

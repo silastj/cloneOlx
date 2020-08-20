@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const PageArea = styled.div`
-    width:600px;
+    max-width:600px;
     box-shadow:0px 1px 4px #000;
     margin:0 10px;
     padding:10px;

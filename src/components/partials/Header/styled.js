@@ -53,6 +53,18 @@ export const HeaderArea = styled.div`
     .s-anunciar:hover{
         background-color:#0737E3;
     }
+    @media screen and (max-width:425px){
+        li{
+        margin: 0 5px;
+        }
+        .s-anunciar{
+            padding:5px 10px;
+            letter-spacing: .5px;
+        }
+        nav ul{
+        display:flex;
+        padding:0
+    }
 `;
 
 export const Logo = styled.img`

@@ -77,6 +77,16 @@ const Api = {
         return json;    
     },
 
+    // CADASTRAR O USUARIO
+    register:async (name, email, password, stateLoc) => {
+        
+        const json = await apiFetchPost(
+            '/user/signup',
+            {name, email, password, state:stateLoc}
+        );
+        return json;
+    },
+
     //LISTA DE DADOS
     getStates:async () => {
         const json = await apiFetchGet(
