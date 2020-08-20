@@ -8,12 +8,10 @@ export const PageArea = styled.div`
     margin-top:10px;
     padding:10px;
     height:100%;
-
-
 `;
 
 export const SearchArea = styled.div`    
-    height:80px;
+
 `;
 
 export const Logo = styled.img`

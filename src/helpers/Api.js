@@ -90,10 +90,17 @@ const Api = {
     //LISTA DE DADOS
     getStates:async () => {
         const json = await apiFetchGet(
-            '/states/'
+            '/states'
         );
-
         return json.states;
+    },
+
+    //LISTA AS CATEGORIAS
+    getCategories:async () => {
+        const json = await apiFetchGet(
+            '/categories'
+        );
+        return json.categories;
     }
 
 };

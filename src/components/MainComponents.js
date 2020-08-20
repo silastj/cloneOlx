@@ -7,19 +7,20 @@ export const Template = styled.div`
 export const PageContainer = styled.div`
     max-width:1440px;
     margin:0 auto;
-    height:100%;
     background: #e5e5e521;
-    margin-top:20px;
+    margin-top:10px;
 
     .searchBox{
         max-width:1440px;
-        margin:0 20px;
+        margin:0 18px;
         display: flex;
         align-items: center;
-        height:100%;        
+        background: #394a27;
+        padding: 20px 8px;
         
-        & select{
-            width: 200px;
+         select{
+            min-width:222px;
+            max-width: 400px;
             border: none;
             border-bottom: 1px solid #7A7A7A;
             height:30px;
@@ -29,8 +30,9 @@ export const PageContainer = styled.div`
                 outline:0;
             }
         }
-        & input{
-            width: 400px;
+         input{
+            min-width:178px;
+            max-width: 400px;
             border: none;
             border-bottom: 1px solid #7A7A7A;
             height:30px;
@@ -41,7 +43,7 @@ export const PageContainer = styled.div`
                 outline:0;
             }
         }
-        & button{
+         button{
             border:none;
             border-bottom: 1px solid #7A7A7A;
             background-color:#fff;
@@ -53,6 +55,35 @@ export const PageContainer = styled.div`
             }
         }
     }
+    .categoryList{
+        display:flex;
+        flex-wrap:wrap;
+        margin-top:20px;
+
+
+        .categoryItem{
+            width:20%;
+            margin:auto 2.5%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            transition: .3s ease;
+            color:#000;
+
+            &:hover{
+                color:#999;
+                transition: .3s ease;
+            }
+            
+            img{
+                width:45px;
+            }
+            span{
+                padding:10px 0;
+            }
+        }
+    }
+   
 `;
 
 export const PageTitle = styled.h1`
