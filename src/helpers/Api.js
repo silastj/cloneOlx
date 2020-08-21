@@ -101,6 +101,15 @@ const Api = {
             '/categories'
         );
         return json.categories;
+    },
+
+    //LISTA DE ADS
+    getAds:async (options) => {
+        const json = await apiFetchGet(
+            '/ad/list',
+            options
+        );
+        return json;
     }
 
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SearchArea, PageArea, Logo } from './styled';
+import { SearchArea, PageArea, Logo, AllReact, LogoReact, PageContainerFooter ,PageAreaFooter } from './styled';
 
 import { Link } from 'react-router-dom';
 
@@ -7,14 +7,17 @@ import useApi from '../../helpers/Api';
 
 import { PageContainer} from '../../components/MainComponents';
 
+import AdItem from '../../components/partials/AdItem';
+
 
 const Page = () => {
 
     const api = useApi();
-
+    //STATES
     const [stateLoc, setStateLoc] = useState('');
     const [stateList, setStateList] = useState([]);
     const [categories, setCategories] = useState([]);
+    const [ adList, setAdList] = useState([]);
 
 
         //Criamos a função getStates para pegar os estados
@@ -35,6 +38,18 @@ const Page = () => {
 
         getCategories();
         }, []);
+
+        //ADS
+        useEffect(()=> {
+            const getRecentAds = async () => {
+                const json = await api.getAds({
+                    sort:'desc',
+                    limit:8
+                });    
+                setAdList(json.ads);           
+            }
+            getRecentAds();
+        }, []);
   
 
     return(
@@ -45,7 +60,7 @@ const Page = () => {
                         <form method="GET" action="/ads">
                        
                             <select  name="state" required value={stateLoc} onChange={e=>setStateLoc(e.target.value)}>
-                                <option>Selecione o Estado</option>
+                                <option>Escolha o seu estado</option>
                                 {stateList.map((i, k)=> 
                                     <option key={k} value={i.id}>{i.name}</option>
                                 )}
@@ -72,9 +87,33 @@ const Page = () => {
 
             <PageContainer>           
                 <PageArea>
-                    footer Santos
+                    <h2>Anúncios recentes</h2>
+                    <div className="list">
+                        {adList.map((i,k)=> 
+                        <AdItem key={k} data={i}/>
+                        )}
+                    </div>
+                    <Link to="/ads" className="seeAllLink">Ver Todos</Link> 
                 </PageArea>
             </PageContainer>
+
+            <PageContainerFooter>           
+                <PageAreaFooter>
+                    <h2>Mais ReactJS</h2>            
+                <AllReact>                                
+                        <div className="OneReact primary">
+                            <a href="https://devfoods.asilas.com.br/" target="_blank">
+                                 <LogoReact src="/assets/img/devsfood-logo.png"/>
+                            </a>
+                        </div>
+                        <div className="OneReact">
+                            <a href="https://devfoods.asilas.com.br/" target="_blank">
+                                    <LogoReact src="/assets/img/maisReactJS.png"/>
+                                </a>
+                        </div>
+                    </AllReact>
+                </PageAreaFooter>
+            </PageContainerFooter>
         </>
      
          )

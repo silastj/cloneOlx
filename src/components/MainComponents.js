@@ -7,16 +7,16 @@ export const Template = styled.div`
 export const PageContainer = styled.div`
     max-width:1440px;
     margin:0 auto;
-    background: #e5e5e521;
     margin-top:10px;
 
     .searchBox{
-        max-width:1440px;
-        margin:0 18px;
+        max-width:800px;
+        margin:0 16px;
         display: flex;
         align-items: center;
         background: #394a27;
         padding: 20px 8px;
+        border-radius:4px;
         
          select{
             min-width:222px;
@@ -25,19 +25,21 @@ export const PageContainer = styled.div`
             border-bottom: 1px solid #7A7A7A;
             height:30px;
             outline:0;
+            color:#000000;
             cursor:pointer;
             &:focus{
                 outline:0;
             }
         }
          input{
-            min-width:178px;
+            min-width:468px;
             max-width: 400px;
             border: none;
             border-bottom: 1px solid #7A7A7A;
             height:30px;
             outline:0;
             padding-left:30px;
+            color:red;
             cursor:pointer;
             &:focus{
                 outline:0;
@@ -49,6 +51,7 @@ export const PageContainer = styled.div`
             background-color:#fff;
             height:30px;
             outline:0;
+            border-left: 1px solid #7a7a7a7a;
             cursor:pointer;
             &:focus{
                 outline:0;
@@ -82,6 +85,54 @@ export const PageContainer = styled.div`
                 padding:10px 0;
             }
         }
+    }
+    @media screen and (max-width:768px){
+        .searchBox{
+            background:#394a2730;
+           
+        }
+        .searchBox select{
+            width:100%;
+            border-bottom:none;
+            margin-bottom:10px;
+            
+        }
+        .searchBox input{
+            min-width:178px;
+            width:100%;
+            padding-left:2px;
+            border-bottom:none;
+            width:100%;
+
+            ::-webkit-input-placeholder {
+            color: #000000;
+            }
+
+            :-moz-placeholder { /* Firefox 18- */
+            color: #000000;  
+            }
+
+            ::-moz-placeholder {  /* Firefox 19+ */
+            color: #000000;  
+            }
+
+            :-ms-input-placeholder {  
+            color: #000000;  
+            }
+
+
+        }
+
+        .searchBox button{
+            /* position:absolute; */
+            right:26px;
+            border-bottom:none;
+        }
+    }
+    @media screen and (max-width:425px){
+        .searchBox button{
+            position:absolute;
+            right:26px;
     }
    
 `;

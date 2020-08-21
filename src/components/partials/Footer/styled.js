@@ -5,15 +5,14 @@ export const FooterArea = styled.div`
     max-width:1440px;
     margin:0 auto;
     background-color:blue;
-    position:fixed;
+    position:relative;
     bottom:0px;
-    left:50%;
-    transform:translateX(-50%);
+    left:0;
     width:100%;
     color:white;
     text-align:center;
     line-height:50px;
-    height:50px;
+    height:200px;
     text-transform:uppercase;
     font-size:21px;
     font-weight:700px;
