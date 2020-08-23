@@ -1,14 +1,16 @@
 import React , { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link} from 'react-router-dom';
 
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 
 
-import {PageArea, Fake} from './styled';
+import {PageArea, Fake, OutherArea, BreadChumb} from './styled';
 import useApi from '../../helpers/Api';
 
 import { PageContainer } from '../../components/MainComponents';
+
+import  AdItem from '../../components/partials/AdItem';
 
 
 const Page = () => {
@@ -49,6 +51,19 @@ const Page = () => {
 
     return (
         <PageContainer>
+           
+            {adInfo.category &&
+             <BreadChumb>
+                Voçê está aqui:
+                <Link to="/">Home</Link>
+                / 
+                <Link to={`/ads?state=${adInfo.stateName}`}>{adInfo.stateName}</Link>
+                / 
+                <Link to={`/ads?state=${adInfo.stateName}&cat=${adInfo.category.slug}`}>{adInfo.category.name}</Link>
+                / {adInfo.title}
+            </BreadChumb>
+            }
+          
             <PageArea>
 
                 <div className="leftSide">
@@ -86,34 +101,7 @@ const Page = () => {
                             </div>
                         </div>
                     </div>
-{/* 
-                    <div className="rightSide twoMobile">
-                    <div className="box b-padding">
-                        {loading && <Fake height={20}>Carregando ...</Fake>}
-                        {adInfo.priceNegotiable &&
-                           "Preço Negociável"
-                        }
-                        {!adInfo.priceNegotiable && adInfo.price &&
-                            <div className="price">Preço: <span>R${adInfo.price}</span></div>
-                            
-                        }
-                        
-                    </div>
 
-                    {loading && <Fake height={20}/>}
-                    {adInfo.userInfo &&
-                        <>
-                            <a href={`mailto:${adInfo.userInfo.email}`} target="_blank" className="contactSellerLink">Fale com o vendedor</a>       
-                            <div className="box b-padding">
-                                    <h3>Criado por: <span><strong>{adInfo.userInfo.name}</strong></span></h3>
-                                    <p>E-mail:{adInfo.userInfo.email}</p>
-                            </div>
-                        </>
-                    
-                    }
-                   
-                    
-                </div> */}
 
                 </div>
                 <div className="rightSide twoDesktop">
@@ -137,14 +125,24 @@ const Page = () => {
                                     <p>E-mail: <strong>{adInfo.userInfo.email}</strong></p>
                                     <p>Estado: <strong>{adInfo.stateName}</strong></p>
                             </div>
-                        </>
-                    
-                    }
-                   
-                    
+                        </>                    
+                    }                    
                 </div>
-
             </PageArea>
+
+            <OutherArea>
+                {adInfo.others &&
+                    <>
+                        <h2>Outras Ofertas do vendedor</h2>
+                            <div className="list">
+                                {adInfo.others.map((i,k)=>
+                                    <AdItem key={k} data={i}/>
+                                )}
+                            </div>
+                    </>
+                }
+            </OutherArea>
+
         </PageContainer>
     );
 }

@@ -84,7 +84,7 @@ export const PageArea = styled.div`
             display:flex;
             justify-content:center;
             align-items:center;
-            box-shadow:0px 0px 1px ##999;
+            box-shadow:0px 0px 1px #999;
             margin-bottom:20px;
         }
         .b-padding{
@@ -99,5 +99,25 @@ export const PageArea = styled.div`
             }
         }
     }
+
+`;
+export const OutherArea = styled.div`
+    h2{
+        font-size:20px;
+    }
+
+    .list{
+        display:flex;
+        flex-wrap:wrap;
+
+        .aditem{
+            width:20%;
+        }
+
+    }
+`;
+
+export const BreadChumb = styled.div`
+    font-weight:bold;
 
 `;

@@ -25,6 +25,7 @@ const Header = () => {
            </div>
            <nav>
                <ul>
+                   {/* LOGADO */}
                    {logged &&
                    <>
                    <li>
@@ -35,10 +36,11 @@ const Header = () => {
                        <button onClick={handleLogout}>Sair</button>
                    </li>
                    <li>
-                       <Link to="/" className="s-anunciar">Anunciar</Link>
+                       <Link to="/post-an-ad" className="s-anunciar">Anunciar</Link>
                    </li>
                    </>
                     }
+                    {/* NÃO LOGADO */}
                    {!logged &&
                     <>
                         <li>
