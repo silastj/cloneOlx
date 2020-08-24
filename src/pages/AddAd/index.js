@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { PageArea } from './styled';
+import { useHistory } from 'react-router-dom';
+
 
 import useApi from '../../helpers/Api';
 
@@ -13,11 +15,10 @@ import { PageContainer, PageTitle, ErrorMessage } from '../../components/MainCom
 const Page = () => {
 
     const api = useApi();
-
-
-
-
     const fileField = useRef();
+    const history = useHistory();
+
+
     const [ categories, setCategories] = useState([]);
 
     const [title, setTitle] = useState('');
@@ -44,22 +45,61 @@ const Page = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setDisabled(true);
+        setError('');
 
-        // const json = await api.login(email, password);
+        //VERIFICAÇÃO DE ERROS
+        let errors = [];
 
-        // if(json.error){
-        //     setError(json.error);
-        // }else {
-        //     doLogin(json.token, rememberPassword);
-        //     window.location.href = "/";
-        // }
+        //verficação do title
+        if(!title.trim()) {
+            errors.push('Sem titulo');
+        }
+        //verificaçao das categorias
+        if(!category){
+            errors.push('Sem categoria');
+        }
+
+        // se tiver algum erro no geral no else ele mostra os erros
+        if(errors.length === 0) {
+
+            const fData = new FormData();
+            fData.append('title', title);
+            fData.append('price', price);
+            fData.append('priceneg', priceNegotiable);
+            fData.append('desc', desc);
+            fData.append('cat', category);
+
+            //imagens o proprio webservice verifica se tem zip ou algo semilar e envia msg 
+            // esse arquivo não é valido
+            if(fileField.current.files.lenght > 0){
+                for(let i=0;i<fileField.current.files.lenght;i++){
+                    fData.append('img', fileField.current.files[i]);
+                }
+            }
+
+            const json = await api.addAd(fData);
+
+            if(!json.error){
+                history.push(`/ad/${json.id}`);
+                return;
+            }else {
+                setError(json.error);
+            }
 
 
-        //APÓS A VERIFICAÇÃO ELE DESBLOQUEIA OS CAMPOS E LIMPA OS VALUES
+
+        } 
+        //mostra os erros
+        else {
+            setError(errors.join("\n"));
+        }
+
+
         setDisabled(false);
-        // setEmail('');
-        // setPassword('');
-        // setRememberPassword('');
+
+        
+
+
     }
 
     //FORMATAÇÃO DO PREÇO

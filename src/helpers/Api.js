@@ -62,6 +62,34 @@ const apiFetchGet = async (endpoint, body = []) => {
     return json;
 }
 
+//IMAGENS
+const apiFetchFile = async(endpoint, body) => {
+
+        //VERIFICAR SE TEM COOKIE, CASO NÃO TIVER ELE PEGA O COOKIE E ENVIA JUNTO COM EMAIL E SENHA
+        if(!body.token) {
+            let token = Cookies.get('token');
+            if(token){
+                body.append('token', token);
+            }
+        }
+      
+    
+    
+        const res = await fetch(BASEAPI + endpoint, {
+            method:'POST',           
+            body
+        });
+    
+        const json = await res.json();
+    
+        //VEREFICA SE TEM AUTORIZAÇÃO PARA LOGAR
+        if(json.notallowed) {
+            window.location.href = "/signin";
+            return;
+        }
+        // CASO CONTRARIO ELE RETORNA O JSON
+        return json;
+}
 
 const Api = {
 
@@ -117,6 +145,15 @@ const Api = {
         const json = await apiFetchGet(
             '/ad/item',
             {id, other}
+        );
+        return json;
+    },
+
+    //IMAGENS
+    addAd:async (fData) =>{
+        const json = await apiFetchFile(
+            '/ad/add',
+            fData
         );
         return json;
     }
