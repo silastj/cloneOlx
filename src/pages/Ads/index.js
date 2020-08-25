@@ -35,10 +35,15 @@ const Page = () => {
     const [categories, setCategories] = useState([]);
     const [ adList, setAdList] = useState([]);
 
+    const [ warningMessage,  setWarningMessage] = useState('Carregando...');
+    const [ loading, setLoading ] = useState(true);
+    
+
     const [ resultOpacity, setResultOpacity] = useState(1);
 
     //Campo de busca
     const getAdsList = async () => {
+        setLoading(true);
         const json = await api.getAds({
             sort:'desc',
             limit:100,
@@ -48,6 +53,7 @@ const Page = () => {
         })
         setAdList(json.ads);
         setResultOpacity(1);
+        setLoading(false);
     }
 
 
@@ -158,6 +164,13 @@ const Page = () => {
 
                    <div className="rightSide">
                        <h2>Resultados</h2>
+                            {loading &&
+                            <div className="listWarning">Carregando ...</div>
+
+                            }
+                            {!loading && adList.length === 0 &&
+                                <div className="listWarning">Nenhum resultado encontrado</div>
+                            }
                        <div className="list" style={{opacity:resultOpacity}}>
                             {adList.map((i,k)=>
                                 <AdItem key={k} data={i}/>

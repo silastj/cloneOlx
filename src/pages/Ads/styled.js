@@ -138,6 +138,7 @@ export const PageArea = styled.div`
             @media screen and (max-width:768px){
                     justify-content: space-between;
                 }
+               
 
             .aditem{
                 width:20%;
@@ -149,6 +150,10 @@ export const PageArea = styled.div`
                 }
             }
         }
+        .listWarning{
+                    padding:30px;
+                    text-align:center;
+                }
         
     }
 `;
