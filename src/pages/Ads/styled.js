@@ -11,12 +11,19 @@ export const PageArea = styled.div`
     margin: 0 auto;
     display:flex;
 
+    @media screen and (max-width:768px){
+            flex-direction:column;
+        }
+
 
     .leftSide{
         width:250px;
         padding:0 10px 0 0;
 
-
+        @media screen and (max-width:768px){
+            padding:5px;
+            width:100%;
+        }
 
         input{
             min-width: 222px;
@@ -28,6 +35,12 @@ export const PageArea = styled.div`
             outline: 0;
             color: #000000;
             cursor: pointer;
+
+            @media screen and (max-width:768px){
+                width:100%;
+                max-width: 100%;
+        }
+
         }
         select{
             min-width: 222px;
@@ -39,6 +52,10 @@ export const PageArea = styled.div`
             outline: 0;
             color: #000000;
             cursor: pointer;
+            @media screen and (max-width:768px){
+                 width:100%;
+                 max-width: 100%;
+        }
         }
             ul{
                     padding: 0;
@@ -106,6 +123,9 @@ export const PageArea = styled.div`
 
     .rightSide{
         flex:1;
+        @media screen and (max-width:768px){
+                   padding:5px;
+                }
         
         h2{
             margin:0 0 10px 0;
@@ -115,8 +135,18 @@ export const PageArea = styled.div`
             display:flex;
             flex-wrap:wrap;
 
+            @media screen and (max-width:768px){
+                    justify-content: space-between;
+                }
+
             .aditem{
                 width:20%;
+
+                @media screen and (max-width:768px){
+                    width:45%;
+                    justify-content: space-between;
+                    margin:0 0 10px 0;
+                }
             }
         }
         
