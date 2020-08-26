@@ -6,7 +6,7 @@ export const Template = styled.div`
 
 export const PageContainer = styled.div`
     max-width:1440px;
-    margin:0 auto;
+    margin:0 auto 30px auto;
     margin-top:10px;
 
     .searchBox{

@@ -12,7 +12,6 @@ import AdItem from '../../components/partials/AdItem';
 
 let timer;
 
-
 const Page = () => {
 
     const api = useApi();
@@ -31,35 +30,60 @@ const Page = () => {
     const [cat, setCat] = useState(query.get('cat') != null ? query.get('cat') : '');
     const [state, setState] = useState(query.get('state') != null ? query.get('state') : '');
 
+    
+    const [adsTotal, setAdsTotal] = useState(0);
     const [stateList, setStateList] = useState([]);
     const [categories, setCategories] = useState([]);
-    const [ adList, setAdList] = useState([]);
+    const [adList, setAdList] = useState([]);    
+    const [pageCount, setPageCount] = useState(0);
+    const [ currentPage, setCurrentPage ] = useState(1);
 
-    const [ warningMessage,  setWarningMessage] = useState('Carregando...');
     const [ loading, setLoading ] = useState(true);
+    const [ resultOpacity, setResultOpacity] = useState(1);
+
+
     
 
-    const [ resultOpacity, setResultOpacity] = useState(1);
 
     //Campo de busca
     const getAdsList = async () => {
         setLoading(true);
+
+        let offset = (currentPage-1) * 10;
+        
         const json = await api.getAds({
             sort:'desc',
-            limit:100,
+            limit:10,
             q,
             cat,
-            state
-        })
+            state,
+            offset
+        });
+
         setAdList(json.ads);
+        setAdsTotal(json.total);
         setResultOpacity(1);
         setLoading(false);
     }
 
 
+        //Paginação
+        useEffect(()=> {
+            if(adList.length > 0){
+                setPageCount( Math.ceil(adsTotal / adList.length));
+            } else{
+                setPageCount(0);
+            }           
+        }, [adsTotal]);
+
+
+        useEffect(()=>{
+            setResultOpacity(0.3);
+            getAdsList();
+        }, [currentPage]);
+
 
         //monitorando as state (q - cat - state)
-
         useEffect(()=> {
 
             //criando um array vazio para juntar todas com templatestring
@@ -86,6 +110,7 @@ const Page = () => {
 
                 timer = setTimeout(getAdsList, 2000);
                 setResultOpacity(0.3);
+                setCurrentPage(1);
 
         }, [q, cat, state]);
 
@@ -119,7 +144,11 @@ const Page = () => {
         //     }
         //     getRecentAds();
         // }, []);
-  
+
+        let pagination = [];
+            for(let i = 1; i <= pageCount; i ++){
+                pagination.push(i);
+            }
 
     return(
                   
@@ -164,7 +193,7 @@ const Page = () => {
 
                    <div className="rightSide">
                        <h2>Resultados</h2>
-                            {loading &&
+                            {loading && adList.length === 0 &&
                             <div className="listWarning">Carregando ...</div>
 
                             }
@@ -176,6 +205,14 @@ const Page = () => {
                                 <AdItem key={k} data={i}/>
                             )}
                        </div>
+
+                        <div className="pagination">
+                           
+                            {pagination.map((i,k)=> 
+                                <div key={k} onClick={()=> setCurrentPage(i)} className={i===currentPage?'pagItem active' : 'pagItem'}>{i}</div>
+                            )}
+                        </div>
+
                    </div>
                 </PageArea>
             </PageContainer>

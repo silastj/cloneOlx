@@ -21,6 +21,7 @@ a{
 .itemName{
     margin-top:5px;
     font-weight:700;
+    text-transform:uppercase;
 }
 .itemPrice{
     font-weight:700;

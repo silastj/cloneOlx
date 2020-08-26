@@ -10,11 +10,34 @@ export const PageArea = styled.div`
     height:100%;
     margin:auto 20px;
 
+    .seeAllLink{
+        border: 1px solid #4E47B9;
+        padding: 15px 60px;
+        margin: 43px 0;
+        background: #4E47B9;
+        border-radius: 24px;
+        color: #fff;
+        font-weight: 700;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        text-transform:uppercase;
+        transition: .3 ease;
+
+        &:hover{
+            transition: .3 ease;
+            opacity: 0.7;
+            color:#000;
+            text-transform:uppercase;
+        }
+    }
+
     .list{
         display:flex;
         flex-wrap:wrap;
         background-color:#cccccc2e;
         padding:20px 10px;
+        margin-bottom:40px;
 
         @media screen and (max-width:768px){
             justify-content: space-between;
@@ -31,14 +54,12 @@ export const PageArea = styled.div`
 
             @media screen and (max-width:768px){
                    width:45%;
+                   margin: 0 5px 10px 0;
                 }
             }
         }
-    }
+    
 
-    @media screen and (max-width:768px){
-        margin:auto 16px;
-    }
 `;
 
 export const SearchArea = styled.div`    

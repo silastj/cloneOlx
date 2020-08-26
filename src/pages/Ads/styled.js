@@ -5,7 +5,7 @@ import styled from 'styled-components';
 export const PageArea = styled.div`
     max-width:1440px;
     box-shadow:0px 1px 4px #000;
-    margin-top:10px;
+    margin:10px 0;
     padding:10px;
     height:100%;
     margin: 0 auto;
@@ -154,7 +154,36 @@ export const PageArea = styled.div`
                     padding:30px;
                     text-align:center;
                 }
-        
+        .pagination{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+
+            .pagItem{
+                width:30px;
+                height:30px;
+                border:1px solid #000;
+                border-radius:4px;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                font-size:14px;
+                margin-right:5px;
+                cursor:pointer;
+
+                &:hover{
+                    border:1px solid #999;
+                    font-weight:700;
+                }
+
+                &.active{
+                    background-color:#000;
+                    border:1px solid #000;
+                    color:#fff;
+                    font-weight:700;
+                }
+            }
+        }
     }
 `;
 
