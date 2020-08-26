@@ -13,6 +13,11 @@ a{
     flex-direction:column;
     color:#000;
 }
+@media screen and (max-width:768px){
+    .itemImage{
+        width:100%;
+}
+}
 
 .itemImage img{
     width:100%;
@@ -22,6 +27,11 @@ a{
     margin-top:5px;
     font-weight:700;
     text-transform:uppercase;
+}
+@media screen and (max-width:768px){
+    .itemName{
+       font-size:9px;
+}
 }
 .itemPrice{
     font-weight:700;

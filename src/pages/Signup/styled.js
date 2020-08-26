@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const PageArea = styled.div`
-    max-width:600px;
+    max-width:100%;
     box-shadow:0px 1px 4px #000;
     margin:0 10px;
     padding:10px;
@@ -13,6 +13,8 @@ export const PageArea = styled.div`
      align-items:center;
      margin:5px 0;
      max-width:500px;
+     
+
  }
  .area--title{
      width:80px;
@@ -38,6 +40,7 @@ export const PageArea = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    margin:0 auto;
  }
 button{
     border:none;
@@ -51,6 +54,7 @@ button{
     text-transform:uppercase;
     letter-spacing:2px;
     outline:0;
+    margin:0 auto;
 }
 
 `;

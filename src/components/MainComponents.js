@@ -8,6 +8,7 @@ export const PageContainer = styled.div`
     max-width:1440px;
     margin:0 auto 30px auto;
     margin-top:10px;
+    height:100%;
 
     .searchBox{
         max-width:800px;

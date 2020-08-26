@@ -13,15 +13,25 @@ export const PageArea = styled.div`
     display:flex;
     margin-top:20px;
 
-
+    @media screen and (max-width:768px){        
+            flex-direction:column;    
+    }
 
 
     .box{
         background-color:#fff;
         border-radius:5px;
         box-shadow:0px 0.5px 3px #999;
-        margin-bottom:20px;
+        margin-bottom:20px;        
     }
+    @media screen and (max-width:768px){
+        .box{
+            flex-direction:column;
+        }
+
+    }
+
+ 
     .leftSide{
         flex:1;
         margin-right:10px;
@@ -29,7 +39,12 @@ export const PageArea = styled.div`
         .box{
             display:flex;
         }
-        
+        @media screen and (max-width:768px){
+            .box{
+
+                margin:10px 0 10px 10px;
+            }
+        }
 
         .adImage{
             width:320px;
@@ -49,9 +64,23 @@ export const PageArea = styled.div`
                 }
             
         }
+        @media screen and (max-width:768px){
+            .adImage{
+                max-width:100%;
+                width:100%;
+            }
+            .each-slide img {
+                width:100%;
+                object-fit:cover;
+            }
+
+    }
+
+        
         .adInfo{
             padding:0 20px 0 0;
             flex:1;
+                       
             .adName{
                 margin-bottom:20px;
 
@@ -67,6 +96,10 @@ export const PageArea = styled.div`
 
     }
 
+    @media screen and (max-width:768px){
+        .leftSide .adInfo{
+                padding:10px;
+            }
 
     .rightSide{
         width:250px;
@@ -99,9 +132,16 @@ export const PageArea = styled.div`
             }
         }
     }
+    @media screen and (max-width:768px){
+        .rightSide{
+            padding:10px;
+            width:100%;
+        }
 
+    }
 `;
 export const OutherArea = styled.div`
+    padding:10px;
     h2{
         font-size:20px;
     }
@@ -115,9 +155,25 @@ export const OutherArea = styled.div`
         }
 
     }
+    @media screen and (max-width:768px){
+        .rightSide{
+            padding:10px;
+            width:100%;
+        }
+        .list{
+            justify-content:space-between;
+        }
+        .list .aditem{
+            width:45%;
+            margin:0 0 10px 0;
+        }
+
+    }
 `;
 
 export const BreadChumb = styled.div`
     font-weight:bold;
-
+    @media screen and (max-width:768px){
+            padding:10px;
+        }
 `;

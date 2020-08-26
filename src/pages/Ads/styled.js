@@ -159,6 +159,11 @@ export const PageArea = styled.div`
             align-items:center;
             justify-content:center;
 
+            @media screen and (max-width:768px){
+                flex-wrap: wrap;
+                justify-content: flex-start;
+            }
+
             .pagItem{
                 width:30px;
                 height:30px;
@@ -170,6 +175,10 @@ export const PageArea = styled.div`
                 font-size:14px;
                 margin-right:5px;
                 cursor:pointer;
+
+                @media screen and (max-width:768px){
+                    margin-bottom:5px;
+                }
 
                 &:hover{
                     border:1px solid #999;
